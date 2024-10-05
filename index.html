@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="cc">
+    <div class="calculator-container">
+      <div class="calculator-container-1">
+        <div class="display">
+          <input type="text" name="display" id="display-input" readonly />
+        </div>
+        <div class="container">
+          <input type="button" value="DE" onclick="deleteLast()" />
+          <input type="button" value="C" onclick="clearDisplay()" />
+          <input type="button" value="." onclick="appendValue(event)" />
+          <input type="button" value="/" onclick="appendValue(event)" />
+        </div>
+        <div class="container">
+          <input type="button" value="7" onclick="appendValue(event)" />
+          <input type="button" value="8" onclick="appendValue(event)" />
+          <input type="button" value="9" onclick="appendValue(event)" />
+          <input type="button" value="*" onclick="appendValue(event)" />
+        </div>
+        <div class="container">
+          <input type="button" value="4" onclick="appendValue(event)" />
+          <input type="button" value="5" onclick="appendValue(event)" />
+          <input type="button" value="6" onclick="appendValue(event)" />
+          <input type="button" value="-" onclick="appendValue(event)" />
+        </div>
+        <div class="container">
+          <input type="button" value="1" onclick="appendValue(event)" />
+          <input type="button" value="2" onclick="appendValue(event)" />
+          <input type="button" value="3" onclick="appendValue(event)" />
+          <input type="button" value="+" onclick="appendValue(event)" />
+        </div>
+        <div class="container">
+          <input type="button" value="00" onclick="appendValue(event)" />
+          <input type="button" value="0" onclick="appendValue(event)" />
+          <input type="button" value="=" onclick="calculate()"  />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var displayInput = document.getElementById("display-input");
+
+    // Function to append clicked values to the display
+    function appendValue(event) {
+      displayInput.value += event.target.value;
+    }
+
+    // Function to clear the display
+    function clearDisplay() {
+      displayInput.value = '';
+    }
+
+    // Function to delete the last character from the display
+    function deleteLast() {
+      displayInput.value = displayInput.value.slice(0, -1);
+    }
+
+    // Function to calculate the result
+    function calculate() {
+      try {
+        displayInput.value = eval(displayInput.value); // Evaluate the expression
+      } catch (error) {
+        displayInput.value = 'Error'; // Show error for invalid expressions
+      }
+    }
+  </script>
+</body>
+</html>
